@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 
 export default function Home() {
-  const DEFAULT_PIN = "123456"; // default PIN
+  const DEFAULT_PIN = "969801"; // default PIN
   const router = useRouter();
 
   // PIN state
@@ -65,7 +65,7 @@ export default function Home() {
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.6 }}
-          className="border border-zinc-700 rounded-2xl shadow-2xl p-6 sm:p-10 text-center relative overflow-hidden min-w-[300px] max-w-3xl"
+          className="border border-zinc-700 rounded-2xl shadow-2xl p-6 sm:p-10 text-center relative overflow-hidden min-w-75 max-w-3xl"
         >
           <h1 className="text-xl sm:text-4xl font-bold leading-snug sm:leading-tight mb-8">
             Hi Nadira ❤️ <br /> I sent you a small gift—can you pick it up?
