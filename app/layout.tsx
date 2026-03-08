@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, Julius_Sans_One, Syncopate } from "next/font/google"; // import both
+import { Inter, Julius_Sans_One, Syncopate } from "next/font/google";
 import "./globals.css";
+// @ts-ignore
+import Cookies from "js-cookie";
+import PinProtected from "./PinProtected";
 
-// Julius Sans One (for button)
 export const julius = Julius_Sans_One({
   subsets: ["latin"],
   weight: "400",
@@ -10,7 +12,6 @@ export const julius = Julius_Sans_One({
   display: "swap",
 });
 
-// Syncopate (for global text)
 export const syncopate = Syncopate({
   subsets: ["latin"],
   weight: ["400", "700"],
@@ -35,14 +36,18 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const DEFAULT_PIN = "123456";
+  const savedPin = Cookies.get("rasel_pin");
+
+  // If you want to **protect all pages**, wrap children in PinProtected
+  // Only render children if the correct PIN exists
   return (
     <html lang="en">
-      {/* Include both font variables */}
       <body className={`${syncopate.variable} ${julius.variable} ${inter.variable} antialiased`}>
-        {children}
+        <PinProtected pin={DEFAULT_PIN}>
+          {children}
+        </PinProtected>
       </body>
     </html>
   );
 }
-
-
