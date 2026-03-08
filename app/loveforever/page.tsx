@@ -1,23 +1,38 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 
 export default function LoveForeverPage() {
   const router = useRouter();
   const [noPos, setNoPos] = useState({ x: 0, y: 0 });
+  const [noClicks, setNoClicks] = useState(0); // track No button clicks
   const noBtnRef = useRef<HTMLButtonElement>(null);
 
   // Move "No" button randomly
   const moveNo = () => {
     if (!noBtnRef.current) return;
 
-    // Random offsets inside a reasonable range
     const x = Math.random() * 120 - 60; // ±60px
     const y = Math.random() * 40 - 20;  // ±20px
 
     setNoPos({ x, y });
+  };
+
+  // Handle clicking "No"
+  const handleNoClick = () => {
+    moveNo(); // move button
+
+    const newCount = noClicks + 1;
+    setNoClicks(newCount);
+
+    if (newCount >= 3) {
+      // redirect AFTER updating state, outside the setState callback
+      setTimeout(() => {
+        router.push("/promiseno");
+      }, 50); // small delay ensures it's outside render
+    }
   };
 
   return (
@@ -35,7 +50,7 @@ export default function LoveForeverPage() {
         </p>
 
         <p className="text-sm sm:text-lg mb-8">
-          Will you be respectfull forever? 😏
+          Will you be respectful forever? 😏
         </p>
 
         {/* Buttons container */}
@@ -48,13 +63,13 @@ export default function LoveForeverPage() {
             Yes ❤️
           </button>
 
-          {/* NO */}
+          {/* NO → moveable & click counter */}
           <motion.button
             ref={noBtnRef}
             animate={{ x: noPos.x, y: noPos.y }}
             transition={{ type: "spring", stiffness: 500, damping: 25, duration: 0.3 }}
-            onMouseEnter={moveNo}  // hover desktop
-            onClick={moveNo}        // click/tap mobile
+            onMouseEnter={moveNo}     // hover desktop
+            onClick={handleNoClick}    // click/tap mobile
             className="px-6 sm:px-10 py-3 sm:py-4 rounded-full bg-red-500 text-sm sm:text-lg font-semibold shadow-lg"
           >
             No 😡
