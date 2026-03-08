@@ -1,0 +1,84 @@
+"use client";
+
+import { useState, useRef } from "react";
+import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
+
+export default function PromiseYesPage() {
+  const router = useRouter();
+  const [showMessage, setShowMessage] = useState(false);
+  const [noPos, setNoPos] = useState({ x: 0, y: 0 });
+  const noBtnRef = useRef<HTMLButtonElement>(null);
+
+  // Move "No" button randomly
+  const moveNo = () => {
+    if (!noBtnRef.current) return;
+
+    const x = Math.random() * 120 - 60;
+    const y = Math.random() * 40 - 20;
+
+    setNoPos({ x, y });
+  };
+
+  const handleYes = () => {
+    setShowMessage(true);
+  };
+
+  const handleConditions = () => {
+    router.push("/promise-conditions");
+  };
+
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-black text-white font-julius p-4 sm:p-6">
+      <div className="border border-zinc-700 rounded-2xl shadow-2xl p-6 sm:p-10 text-center relative overflow-hidden min-w-75 max-w-3xl">
+        <div className="text-6xl mb-4">💖</div>
+
+        {!showMessage ? (
+          <>
+            <h1 className="text-xl sm:text-3xl font-bold mb-6">
+              Are you going to love Rasel forever? 😏
+            </h1>
+
+            <div className="relative h-24 flex items-center justify-center gap-6">
+              {/* YES → show message */}
+              <button
+                onClick={handleYes}
+                className="px-6 sm:px-10 py-3 sm:py-4 rounded-full bg-green-500 hover:bg-green-600 text-sm sm:text-lg font-semibold shadow-lg"
+              >
+                Yes ❤️
+              </button>
+
+              {/* NO → move button */}
+              <motion.button
+                ref={noBtnRef}
+                animate={{ x: noPos.x, y: noPos.y }}
+                transition={{ type: "spring", stiffness: 500, damping: 25, duration: 0.3 }}
+                onMouseEnter={moveNo}
+                onClick={moveNo}
+                className="px-6 sm:px-10 py-3 sm:py-4 rounded-full bg-red-500 text-sm sm:text-lg font-semibold shadow-lg"
+              >
+                No 😡
+              </motion.button>
+            </div>
+          </>
+        ) : (
+          <div>
+            <h1 className="text-xl sm:text-3xl font-bold mb-6 text-green-400">
+              🎉 Welcome! You are always in Rasel's heart ❤️
+            </h1>
+            <p className="text-sm sm:text-lg mb-6">
+              It was blocked because of disrespect.💌
+            </p>
+
+            <button
+              onClick={handleConditions}
+              className="px-6 sm:px-10 py-3 sm:py-4 rounded-full bg-blue-500 hover:bg-blue-600 text-sm sm:text-lg font-semibold shadow-lg"
+            >
+              See Promises 📜
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
