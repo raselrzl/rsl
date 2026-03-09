@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
@@ -8,11 +8,20 @@ import Image from "next/image";
 export default function EndFriends() {
   const router = useRouter();
   const [showPopup, setShowPopup] = useState(false);
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+
+  // Get window size on client
+  useEffect(() => {
+    setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+    const handleResize = () =>
+      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleApology = () => {
     setShowPopup(true);
 
-    // Hide popup after 1.5 seconds then redirect
     setTimeout(() => {
       setShowPopup(false);
       router.push("/");
@@ -20,14 +29,38 @@ export default function EndFriends() {
   };
 
   return (
-    <div className="relative w-full min-h-screen flex items-center justify-center bg-black text-white font-julius">
-      {/* Background */}
-      <Image
-        src="/fireworks.gif"
-        alt="Fireworks"
-        fill
-        className="object-cover opacity-70"
-      />
+    <div className="relative w-full min-h-screen flex items-center justify-center bg-black text-white font-julius overflow-hidden">
+      {/* Floating emoji background */}
+      {windowSize.width > 0 &&
+        Array.from({ length: 20 }).map((_, i) => {
+          const size = 30 + Math.random() * 40; // emoji size
+          const duration = 10 + Math.random() * 10; // animation duration
+          const startX = Math.random() * windowSize.width;
+          const startY = Math.random() * windowSize.height;
+          const endX = Math.random() * windowSize.width;
+          const endY = Math.random() * windowSize.height;
+
+          return (
+            <motion.div
+              key={i}
+              className="absolute text-3xl select-none"
+              style={{
+                left: startX,
+                top: startY,
+                fontSize: size,
+              }}
+              animate={{ x: [0, endX - startX], y: [0, endY - startY] }}
+              transition={{
+                duration,
+                repeat: Infinity,
+                repeatType: "mirror",
+                ease: "linear",
+              }}
+            >
+               😭
+            </motion.div>
+          );
+        })}
 
       {/* End Card */}
       <motion.div
@@ -41,7 +74,7 @@ export default function EndFriends() {
 
         {/* Title with inline image */}
         <h1 className="text-2xl sm:text-4xl font-bold text-pink-400 mb-6 flex items-center justify-center gap-2">
-          👀 Oho........ you're on 
+          👀 Oho........ you're on{" "}
           <Image
             src="/6.png"
             alt="Anisa"

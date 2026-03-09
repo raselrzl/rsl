@@ -1,18 +1,29 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 export default function FriendsPage() {
-  const router = useRouter(); // ✅ add router
-
+  const router = useRouter(); 
   const [showPopup, setShowPopup] = useState(false);
   const [oopsPos, setOopsPos] = useState({ x: 0, y: 0 });
 
   const popupRef = useRef<HTMLDivElement>(null);
   const oopsRef = useRef<HTMLButtonElement>(null);
+
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+
+  // Get window size on client
+  useEffect(() => {
+    setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+    const handleResize = () => {
+      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const moveOopsBtn = () => {
     if (!popupRef.current || !oopsRef.current) return;
@@ -30,19 +41,50 @@ export default function FriendsPage() {
   };
 
   const handleYes = () => {
-    router.push("/endfiends"); // ✅ redirect to home
+    router.push("/endfiends"); 
   };
 
   return (
-    <div className="relative w-full min-h-screen flex items-center justify-center bg-black text-white font-julius">
-      {/* Background */}
-      <Image
-        src="/img1.jpg"
-        alt="Fireworks"
-        fill
-        className="object-cover opacity-70"
-      />
-      <div className="absolute inset-0 bg-black/60 z-0"></div>
+    <div className="relative w-full min-h-screen flex items-center justify-center bg-black text-white font-julius overflow-hidden">
+      {/* Background: moving Anisa images */}
+      <div className="absolute inset-0 pointer-events-none">
+        {windowSize.width > 0 &&
+          Array.from({ length: 15 }).map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute"
+              initial={{
+                x: Math.random() * windowSize.width,
+                y: Math.random() * windowSize.height,
+              }}
+              animate={{
+                x: [
+                  Math.random() * windowSize.width,
+                  Math.random() * windowSize.width,
+                ],
+                y: [
+                  Math.random() * windowSize.height,
+                  Math.random() * windowSize.height,
+                ],
+              }}
+              transition={{
+                duration: 10 + Math.random() * 10,
+                repeat: Infinity,
+                repeatType: "mirror",
+                ease: "linear",
+              }}
+            >
+              <Image
+                src="/6.png"
+                alt="Anisa"
+                width={80}
+                height={80}
+                className="rounded-full border-2 border-red-500"
+              />
+            </motion.div>
+          ))}
+      </div>
+
       {/* Main Card */}
       <div className="relative z-10 bg-zinc-900 border border-zinc-700 rounded-2xl p-8 sm:p-12 text-center shadow-2xl w-80 sm:w-105">
         <h2 className="text-xl sm:text-4xl font-bold text-pink-400 mb-6">
@@ -70,7 +112,7 @@ export default function FriendsPage() {
 
         <button
           onClick={() => setShowPopup(true)}
-          className="rounded-full shadow-lg hover:scale-110 transition"
+          className="rounded-full shadow-lg hover:scale-110 transition relative z-10"
         >
           <Image
             src="/6.png"
@@ -82,16 +124,52 @@ export default function FriendsPage() {
         </button>
       </div>
 
+      {/* Popup */}
       {showPopup && (
         <>
-          {/* Dark overlay */}
           <div className="absolute inset-0 bg-black z-10 flex items-center justify-center">
-            {/* Popup card (same size as main card) */}
+              {/* Background: moving Anisa images */}
+      <div className="absolute inset-0 pointer-events-none">
+        {windowSize.width > 0 &&
+          Array.from({ length: 15 }).map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute"
+              initial={{
+                x: Math.random() * windowSize.width,
+                y: Math.random() * windowSize.height,
+              }}
+              animate={{
+                x: [
+                  Math.random() * windowSize.width,
+                  Math.random() * windowSize.width,
+                ],
+                y: [
+                  Math.random() * windowSize.height,
+                  Math.random() * windowSize.height,
+                ],
+              }}
+              transition={{
+                duration: 10 + Math.random() * 10,
+                repeat: Infinity,
+                repeatType: "mirror",
+                ease: "linear",
+              }}
+            >
+              <Image
+                src="/6.png"
+                alt="Anisa"
+                width={80}
+                height={80}
+                className="rounded-full border-2 border-red-500"
+              />
+            </motion.div>
+          ))}
+      </div>
             <div
               ref={popupRef}
               className="relative z-20 bg-zinc-900 border border-zinc-700 rounded-2xl p-8 sm:p-12 text-center shadow-2xl w-80 sm:w-105"
             >
-              {/* Big sad emoji */}
               <div className="text-5xl mb-4">😞</div>
 
               <p className="text-pink-400 text-sm sm:text-xl mb-6">
@@ -106,7 +184,6 @@ export default function FriendsPage() {
               </p>
 
               <div className="flex justify-center gap-4 relative">
-                {/* YES button */}
                 <button
                   onClick={handleYes}
                   className="px-6 py-2 rounded-full bg-green-500 hover:bg-green-600 transition shadow-lg"
@@ -114,7 +191,6 @@ export default function FriendsPage() {
                   OK 😞
                 </button>
 
-                {/* Moving Ooops button */}
                 <motion.button
                   ref={oopsRef}
                   animate={{ x: oopsPos.x, y: oopsPos.y }}

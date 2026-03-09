@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function PromiseConditionsPage() {
   const conditions = [
@@ -15,9 +16,42 @@ export default function PromiseConditionsPage() {
     "Communicate openly and lovingly every day 🗣️💖",
   ];
 
+  const emojis = ["💖", "✨", "🌟", "💌", "🎉", "💚", "😇", "🗣️"]; // background emojis
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-black text-white font-julius p-4 sm:p-6">
-      <div className="border-4 border-zinc-700 rounded-2xl shadow-2xl p-6 sm:p-10 w-full max-w-md bg-zinc-900">
+    <div className="relative flex min-h-screen items-center justify-center bg-black text-white font-julius p-4 sm:p-6 overflow-hidden">
+
+      {/* Floating background emojis */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {Array.from({ length: 30 }).map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute text-5xl select-none"
+            initial={{
+              x: "-20vw",
+              y: `${Math.random() * 100}vh`,
+            }}
+            animate={{
+              x: "120vw",
+              y: "-20vh",
+            }}
+            transition={{
+              duration: 12 + Math.random() * 10,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+          >
+            {emojis[Math.floor(Math.random() * emojis.length)]}
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Card content */}
+      <div className="relative z-10 border-4 border-zinc-700 opacity-50 rounded-2xl shadow-2xl p-6 sm:p-10 w-full max-w-md bg-zinc-900">
         {/* Top instructions */}
         <div className="mb-6 text-center">
           <div className="text-5xl mb-4">💖</div>

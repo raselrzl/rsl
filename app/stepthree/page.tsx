@@ -58,22 +58,24 @@ export default function StepPunch() {
   };
 
   return (
-    <div className="relative w-full min-h-screen flex flex-col items-center justify-center bg-black text-white font-julius">
-      {/* Moving punch emojis background */}
-      <motion.div
-        className="absolute text-6xl opacity-20"
-        animate={{ x: [0, 200, -200, 0], y: [0, -150, 150, 0] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-      >
-        👊
-      </motion.div>
+    <div className="relative w-full min-h-screen flex flex-col items-center justify-center text-white font-julius overflow-hidden">
+      {/* Background GIF */}
+      <Image
+        src="/angrywomen.gif"
+        alt="angry women"
+        fill
+        priority
+        className="object-cover opacity-40 -z-10"
+      />
+
+      <div className="absolute inset-0 bg-black/80 z-0"></div>
 
       <motion.div
         className="absolute text-7xl opacity-20"
         animate={{ x: [0, -250, 250, 0], y: [0, 200, -200, 0] }}
         transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
       >
-        👊
+        👊 👊 👊 👊 👊 👊 👊 👊 👊 👊 👊 👊 👊 👊 👊 👊 👊 👊
       </motion.div>
 
       <motion.div
@@ -135,7 +137,7 @@ export default function StepPunch() {
                 "/rasel",
               )
             }
-             className="p-1 rounded-full shadow-lg hover:scale-110 transition"
+            className="p-1 rounded-full shadow-lg hover:scale-110 transition"
           >
             <Image
               src="/3.png"
@@ -153,7 +155,7 @@ export default function StepPunch() {
             transition={{ type: "spring", stiffness: 500, damping: 25 }}
             onMouseEnter={() => moveBtn(setFaizaPos, faizaRef)}
             onClick={() => moveBtn(setFaizaPos, faizaRef)}
-           className="p-1 rounded-full shadow-lg hover:scale-110 transition"
+            className="p-1 rounded-full shadow-lg hover:scale-110 transition"
           >
             <Image
               src="/8.png"
@@ -171,7 +173,7 @@ export default function StepPunch() {
             transition={{ type: "spring", stiffness: 500, damping: 25 }}
             onMouseEnter={() => moveBtn(setMayubPos, mayubRef)}
             onClick={() => moveBtn(setMayubPos, mayubRef)}
-             className="p-1 rounded-full shadow-lg hover:scale-110 transition"
+            className="p-1 rounded-full shadow-lg hover:scale-110 transition"
           >
             <Image
               src="/2.png"
@@ -196,7 +198,7 @@ export default function StepPunch() {
                 "/naveen",
               )
             }
-           className="p-1 rounded-full shadow-lg hover:scale-110 transition"
+            className="p-1 rounded-full shadow-lg hover:scale-110 transition"
           >
             <Image
               src="/5.png"

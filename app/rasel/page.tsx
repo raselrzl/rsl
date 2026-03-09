@@ -32,14 +32,14 @@ export default function RaselPage() {
     <div className="relative w-full min-h-screen flex items-center justify-center bg-black text-white font-julius">
       {/* Background */}
       <Image
-        src="/img1.jpg"
+        src="/rasel1.jpg"
         alt="Background"
         fill
         className="object-cover opacity-70"
       />
- <div className="absolute inset-0 bg-black/60 z-0"></div>
+ <div className="absolute inset-0 bg-black/20 z-0"></div>
       {/* Card */}
-      <div className="relative z-10 bg-zinc-900 border border-zinc-700 rounded-2xl p-8 sm:p-12 text-center shadow-2xl w-80 sm:w-105">
+      <div className="relative z-10 bg-zinc-900 opacity-80 border border-zinc-700 rounded-2xl p-8 sm:p-12 text-center shadow-2xl w-80 sm:w-105">
         <div className="text-6xl mb-4">😤</div>
 
         <h1 className="text-xl sm:text-3xl font-bold text-pink-400 mb-6">

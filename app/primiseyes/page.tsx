@@ -30,8 +30,39 @@ export default function PromiseYesPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-black text-white font-julius p-4 sm:p-6">
-      <div className="border border-zinc-700 rounded-2xl shadow-2xl p-6 sm:p-10 text-center relative overflow-hidden min-w-75 max-w-3xl">
+    <div className="relative flex min-h-screen items-center justify-center bg-black text-white font-julius p-4 sm:p-6 overflow-hidden">
+
+      {/* Floating ❤️ background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {Array.from({ length: 30 }).map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute text-6xl select-none"
+            initial={{
+              x: "-20vw",
+              y: `${Math.random() * 100}vh`,
+            }}
+            animate={{
+              x: "120vw",
+              y: "-20vh",
+            }}
+            transition={{
+              duration: 12 + Math.random() * 10,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+          >
+            ❤️
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Card */}
+      <div className="relative z-10 border border-zinc-700 rounded-2xl shadow-2xl p-6 sm:p-10 text-center overflow-hidden min-w-75 max-w-3xl">
         <div className="text-6xl mb-4">💖</div>
 
         {!showMessage ? (
@@ -94,7 +125,7 @@ export default function PromiseYesPage() {
 
             <button
               onClick={handleConditions}
-              className="px-6 sm:px-10 py-3 sm:py-4 rounded-full bg-blue-500 hover:bg-blue-600 text-sm sm:text-lg font-semibold shadow-lg"
+              className="px-6 sm:px-10 py-3 sm:py-4 rounded-full bg-pink-500 hover:bg-pink-600 text-sm sm:text-lg font-semibold shadow-lg"
             >
               Promise? 📜
             </button>

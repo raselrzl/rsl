@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -16,8 +16,11 @@ export default function Home() {
   const [error, setError] = useState("");
 
   const [noPos, setNoPos] = useState({ x: 0, y: 0 });
-  const cardRef = useRef<HTMLDivElement>(null);
-  const noBtnRef = useRef<HTMLButtonElement>(null);
+
+  // Floating positions
+  const [floatingPositions, setFloatingPositions] = useState<
+    { x: number; y: number; size: number; duration: number }[]
+  >([]);
 
   useEffect(() => {
     const savedPin = Cookies.get("rasel_pin");
@@ -26,14 +29,26 @@ export default function Home() {
     }
   }, []);
 
+  // Only generate floating positions on client **and only when hasAccess**
+  useEffect(() => {
+    if (hasAccess) {
+      const positions = Array.from({ length: 10 }).map(() => ({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        size: 40 + Math.random() * 40,
+        duration: 10 + Math.random() * 10,
+      }));
+      setFloatingPositions(positions);
+    }
+  }, [hasAccess]);
+
   const moveNo = () => {
-    if (!cardRef.current || !noBtnRef.current) return;
+    const card = document.querySelector("#cardRef") as HTMLElement;
+    const btn = document.querySelector("#noBtnRef") as HTMLElement;
+    if (!card || !btn) return;
 
-    const cardRect = cardRef.current.getBoundingClientRect();
-    const btnRect = noBtnRef.current.getBoundingClientRect();
-
-    const maxX = cardRect.width - btnRect.width;
-    const maxY = cardRect.height - btnRect.height;
+    const maxX = card.offsetWidth - btn.offsetWidth;
+    const maxY = card.offsetHeight - btn.offsetHeight;
 
     const x = Math.random() * maxX - maxX / 2;
     const y = Math.random() * maxY - maxY / 2;
@@ -53,30 +68,56 @@ export default function Home() {
   };
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center font-julius text-white">
-      {/* Background image */}
-      <Image
-        src="/img3.jpg"
-        alt="Background"
-        fill
-        className="object-cover"
-        priority
-      />
-      {/* Black overlay */}
-      <div className="absolute inset-0 bg-black/85 z-0"></div>
+    <div className="relative min-h-screen flex items-center justify-center font-julius bg-black text-white p-4 overflow-hidden">
+      {/* Floating background images - only when hasAccess */}
+      {hasAccess &&
+        floatingPositions.map((pos, i) => {
+          const imgSrc = i % 2 === 0 ? "/7.png" : "/rasel.png"; // alternate Anisa & Rasel
+          return (
+            <motion.div
+              key={i}
+              className="absolute select-none rounded-full border-2 border-red-500"
+              style={{
+                width: pos.size,
+                height: pos.size,
+                left: pos.x,
+                top: pos.y,
+              }}
+              animate={{
+                x: [0, Math.random() * 200 - 100],
+                y: [0, Math.random() * 200 - 100],
+              }}
+              transition={{
+                duration: pos.duration,
+                repeat: Infinity,
+                repeatType: "mirror",
+                ease: "linear",
+              }}
+            >
+              <Image
+                src={imgSrc}
+                alt={imgSrc.includes("7") ? "Anisa" : "Rasel"}
+                width={pos.size}
+                height={pos.size}
+                className="rounded-full object-cover"
+              />
+            </motion.div>
+          );
+        })}
 
       {/* Page content */}
       {hasAccess ? (
         <motion.div
-          ref={cardRef}
+          id="cardRef"
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.6 }}
-          className="relative z-10 border border-zinc-700 rounded-2xl shadow-2xl p-6 sm:p-10 text-center min-w-75 max-w-3xl"
-        >
+          className="relative z-10 border bg-black opacity-10 border-zinc-700 rounded-2xl shadow-2xl p-6 sm:p-10 text-center min-w-75 max-w-3xl"
+        > <p className="text-3xl">Hi 👋</p>
+          <h1 className="text-5xl text-pink-500"> ❤️ ❤️ ❤️Welcome</h1>
           <h1 className="text-xl sm:text-4xl font-bold mb-8 leading-snug sm:leading-tight">
             <span className="inline-flex items-center gap-2">
-              Hi
+             
               <Image
                 src="/7.png"
                 alt="Anisa"
@@ -89,7 +130,7 @@ export default function Home() {
             Its me{" "}
             <Image
               src="/rasel.png"
-              alt="Anisa"
+              alt="Rasel"
               width={40}
               height={40}
               className="rounded-full object-cover border-2 border-red-500"
@@ -106,7 +147,7 @@ export default function Home() {
             </button>
 
             <motion.button
-              ref={noBtnRef}
+              id="noBtnRef"
               animate={{ x: noPos.x, y: noPos.y }}
               transition={{
                 type: "spring",
