@@ -13,14 +13,20 @@ export default function NadiraPage() {
   };
 
   // Floating Nadira images positions
-  const [floatingPositions, setFloatingPositions] = useState(
-    Array.from({ length: 10 }).map(() => ({
+  const [floatingPositions, setFloatingPositions] = useState<
+    { x: number; y: number; size: number; duration: number }[]
+  >([]);
+
+  // Generate positions only on the client
+  useEffect(() => {
+    const positions = Array.from({ length: 10 }).map(() => ({
       x: Math.random() * window.innerWidth,
       y: Math.random() * window.innerHeight,
       size: 60 + Math.random() * 40,
       duration: 10 + Math.random() * 10,
-    }))
-  );
+    }));
+    setFloatingPositions(positions);
+  }, []);
 
   return (
     <div className="relative w-full min-h-screen flex items-center justify-center bg-black text-white font-julius overflow-hidden">
@@ -55,8 +61,6 @@ export default function NadiraPage() {
           />
         </motion.div>
       ))}
-
-      {/* Dark overlay */}
 
       {/* Card */}
       <motion.div
