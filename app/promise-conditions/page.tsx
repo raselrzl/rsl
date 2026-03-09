@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import FloatingEndButton from "../FloatingEndButton";
 
 export default function PromiseConditionsPage() {
   const conditions = [
@@ -119,6 +120,7 @@ export default function PromiseConditionsPage() {
           </p>
         </div>
       </div>
+      <FloatingEndButton />
     </div>
   );
 }
