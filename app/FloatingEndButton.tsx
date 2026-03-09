@@ -16,7 +16,7 @@ export default function FloatingEndButton() {
 
   return (
     <button
-      className="fixed z-50 bottom-8 right-8 px-6 py-3 rounded-full bg-blue-500 hover:bg-blue-600 text-white font-bold shadow-lg"
+      className="fixed z-50 bottom-8 right-8 px-3 py-1 rounded-full bg-red-500 hover:bg-red-600 text-white font-bold shadow-lg"
       onClick={handleClick}
     >
       🏁 End
