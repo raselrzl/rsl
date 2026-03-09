@@ -30,39 +30,43 @@ export default function RaselPage() {
 
   return (
     <div className="relative w-full min-h-screen flex items-center justify-center bg-black text-white font-julius">
-
       {/* Background */}
       <Image
-        src="/fireworks1.gif"
+        src="/img1.jpg"
         alt="Background"
         fill
         className="object-cover opacity-70"
       />
-
+ <div className="absolute inset-0 bg-black/60 z-0"></div>
       {/* Card */}
       <div className="relative z-10 bg-zinc-900 border border-zinc-700 rounded-2xl p-8 sm:p-12 text-center shadow-2xl w-80 sm:w-105">
-
         <div className="text-6xl mb-4">😤</div>
 
         <h1 className="text-xl sm:text-3xl font-bold text-pink-400 mb-6">
           Stop Right There!
         </h1>
 
-        <p className="text-sm sm:text-xl mb-4">
-          You can't punch Rasel 😤
-        </p>
+        <p className="text-sm sm:text-xl mb-4">You can't punch A cute man 😤</p>
 
         <p className="text-sm sm:text-lg text-zinc-300 mb-8">
-          You are not allowed to disrespect him. <br />
-          You are only allowed to <span className="text-pink-400">love him</span> ❤️
+          You are not allowed to disrespect. <br />
+          You are only allowed to{" "}
+          <span className="text-pink-400">
+            love{" "}
+            <Image
+              src="/3.png"
+              alt="Anisa"
+              width={80}
+              height={80}
+              className="rounded-full object-cover border-2 border-red-500"
+            />
+          </span>{" "}
+          ❤️
         </p>
 
-        <p className="text-sm sm:text-lg mb-6">
-          Do you love Rasel? 😏
-        </p>
+        <p className="text-sm sm:text-lg mb-6">Do you really love ? 😏</p>
 
         <div className="flex justify-center gap-4 relative">
-
           {/* YES */}
           <button
             onClick={handleYes}
@@ -82,7 +86,6 @@ export default function RaselPage() {
           >
             No 😡
           </motion.button>
-
         </div>
       </div>
     </div>

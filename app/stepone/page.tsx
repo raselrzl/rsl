@@ -31,7 +31,12 @@ export default function Step1() {
   return (
     <div className="relative w-full h-screen flex items-center justify-center bg-black text-white font-julius">
       {/* Background */}
-      <Image src="/fireworks1.gif" alt="Fireworks" fill className="object-cover opacity-70" />
+      <Image
+        src="/fireworks1.gif"
+        alt="Fireworks"
+        fill
+        className="object-cover opacity-70"
+      />
 
       <motion.div
         ref={cardRef}
@@ -40,11 +45,34 @@ export default function Step1() {
         transition={{ duration: 0.4 }}
         className="relative z-10 bg-zinc-900 border border-zinc-700 rounded-2xl p-6 sm:p-12 text-center shadow-2xl w-80 sm:w-105"
       >
-        <h2 className="text-xl sm:text-4xl font-bold text-pink-400 mb-4 sm:mb-6">
-          ❤️ Wow! I'm so happy you said YES! ❤️
+        <h2 className="flex-col text-xl sm:text-4xl font-bold text-pink-400 mb-4 sm:mb-6 flex items-center justify-center gap-2">
+          ❤️ Wow!{" "}
+          <Image
+            src="/rasel.png"
+            alt="inline"
+            width={40}
+            height={40}
+            className="rounded-full object-cover inline-block h-10 w-10"
+            priority
+          />{" "}
+          so happy that
+          <Image
+            src="/img2.jpg"
+            alt="inline"
+            width={40}
+            height={40}
+            className="rounded-full object-cover inline-block h-10 w-10"
+            priority
+          />
+          said YES! ❤️
+          <p className="text-[8px] text-yellow-600">
+            ⚠️ You might receive a call from Sundarban Courier.
+          </p>
         </h2>
         <p className="text-sm sm:text-xl mb-4 sm:mb-8">Thank you 🎆</p>
-        <h3 className="text-base sm:text-2xl font-semibold mb-4 sm:mb-8">Are you satisfied?</h3>
+        <h3 className="text-base sm:text-2xl font-semibold mb-4 sm:mb-8">
+          Are you happy?
+        </h3>
 
         <div className="relative h-16 sm:h-20 flex justify-center gap-4 items-center">
           {/* NO button (redirects to step2) */}
@@ -59,9 +87,14 @@ export default function Step1() {
           <motion.button
             ref={yesBtnRef}
             animate={{ x: yesPos.x, y: yesPos.y }}
-            transition={{ type: "spring", stiffness: 500, damping: 25, duration: 0.3 }}
-            onMouseEnter={moveYes}   // Desktop hover
-            onClick={moveYes}         // Mobile tap
+            transition={{
+              type: "spring",
+              stiffness: 500,
+              damping: 25,
+              duration: 0.3,
+            }}
+            onMouseEnter={moveYes} // Desktop hover
+            onClick={moveYes} // Mobile tap
             className="px-6 py-2 rounded-full bg-red-500 text-sm sm:text-base"
           >
             Yes

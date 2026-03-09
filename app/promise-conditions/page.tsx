@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 export default function PromiseConditionsPage() {
   const conditions = [
     "Always be respectful to each other ❤️",
@@ -16,15 +18,29 @@ export default function PromiseConditionsPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-black text-white font-julius p-4 sm:p-6">
       <div className="border-4 border-zinc-700 rounded-2xl shadow-2xl p-6 sm:p-10 w-full max-w-md bg-zinc-900">
-
         {/* Top instructions */}
         <div className="mb-6 text-center">
           <div className="text-5xl mb-4">💖</div>
           <p className="text-sm sm:text-lg mb-2">
+            <Image
+              src="/7.png"
+              alt="Nadira"
+              width={80}
+              height={80}
+              className="rounded-full object-cover border-2 border-red-500"
+            />{" "}
             Read carefully 😔
           </p>
           <p className="text-sm sm:text-lg font-semibold text-red-400">
-            This shows your intelligence and willingness to be with Rasel!
+            This shows your intelligence and willingness to be with{" "}
+            <Image
+              src="/3.png"
+              alt="Rasel"
+              width={80}
+              height={80}
+              className="rounded-full object-cover border-2 border-red-500"
+            />
+            !
           </p>
         </div>
 
@@ -41,12 +57,31 @@ export default function PromiseConditionsPage() {
         </div>
 
         {/* Bottom instructions */}
-        <div className="text-center">
-          <p className="text-sm sm:text-lg mb-2">
-            When you truly believe in love and respect in your heart, please make a **screenshot of the promise box** from top to bottom. 📸
+        <div className="max-w-xl mx-auto p-6 sm:p-10 bg-zinc-900 border border-zinc-700 rounded-2xl shadow-2xl text-center font-julius space-y-4">
+          {/* Top note */}
+          <p className="text-sm sm:text-lg mb-2 text-zinc-300">
+            💌 When you truly believe in{" "}
+            <span className="text-pink-400 font-semibold">love</span> and{" "}
+            <span className="text-green-400 font-semibold">respect</span> in
+            your heart, please take a{" "}
+            <span className="underline text-yellow-400 font-bold">
+              screenshot of the promise box
+            </span>{" "}
+            from top to bottom. 📸
           </p>
-          <p className="text-sm sm:text-lg font-semibold text-yellow-400">
-            Send it to Rasel's email. Only then will he **open his heart for the last time**, never to close again. ❤️
+
+          {/* Important instruction */}
+          <p className="text-sm sm:text-lg font-semibold text-yellow-400 bg-black/40 p-3 rounded-lg shadow-inner">
+            📧 Send it to Rasel's email. Only then will he{" "}
+            <span className="text-pink-400 font-bold">
+              open his heart for the last time
+            </span>
+            , never to close it again. ❤️
+          </p>
+
+          {/* Warning */}
+          <p className="text-sm sm:text-lg font-semibold text-red-500 bg-black/30 p-2 rounded-md shadow-inner">
+            ⚠️ Zero tolerance for disrespect.
           </p>
         </div>
       </div>

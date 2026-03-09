@@ -47,7 +47,7 @@ export default function StepPunch() {
     setClicks: Function,
     setPos: Function,
     btnRef: any,
-    link: string
+    link: string,
   ) => {
     if (clicks < 2) {
       moveBtn(setPos, btnRef);
@@ -59,7 +59,30 @@ export default function StepPunch() {
 
   return (
     <div className="relative w-full min-h-screen flex flex-col items-center justify-center bg-black text-white font-julius">
-      <Image src="/fireworks1.gif" alt="Fireworks" fill className="object-cover opacity-70" />
+      {/* Moving punch emojis background */}
+      <motion.div
+        className="absolute text-6xl opacity-20"
+        animate={{ x: [0, 200, -200, 0], y: [0, -150, 150, 0] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+      >
+        👊
+      </motion.div>
+
+      <motion.div
+        className="absolute text-7xl opacity-20"
+        animate={{ x: [0, -250, 250, 0], y: [0, 200, -200, 0] }}
+        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+      >
+        👊
+      </motion.div>
+
+      <motion.div
+        className="absolute text-5xl opacity-20"
+        animate={{ x: [0, 300, -300, 0], y: [0, -200, 200, 0] }}
+        transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+      >
+        👊
+      </motion.div>
 
       <motion.div
         ref={cardRef}
@@ -79,11 +102,23 @@ export default function StepPunch() {
             animate={{ x: nadiraPos.x, y: nadiraPos.y }}
             transition={{ type: "spring", stiffness: 500, damping: 25 }}
             onClick={() =>
-              handleClickMoveThenNavigate(nadiraClicks, setNadiraClicks, setNadiraPos, nadiraRef, "/nadira")
+              handleClickMoveThenNavigate(
+                nadiraClicks,
+                setNadiraClicks,
+                setNadiraPos,
+                nadiraRef,
+                "/nadira",
+              )
             }
-            className="px-6 py-2 rounded-full bg-red-500 text-sm sm:text-base shadow-lg hover:bg-red-600 transition"
+            className="p-1 rounded-full shadow-lg hover:scale-110 transition"
           >
-            Nadira
+            <Image
+              src="/1.png"
+              alt="Nadira"
+              width={60}
+              height={60}
+              className="rounded-full object-cover border-2 border-red-900"
+            />
           </motion.button>
 
           {/* Rasel */}
@@ -92,11 +127,23 @@ export default function StepPunch() {
             animate={{ x: raselPos.x, y: raselPos.y }}
             transition={{ type: "spring", stiffness: 500, damping: 25 }}
             onClick={() =>
-              handleClickMoveThenNavigate(raselClicks, setRaselClicks, setRaselPos, raselRef, "/rasel")
+              handleClickMoveThenNavigate(
+                raselClicks,
+                setRaselClicks,
+                setRaselPos,
+                raselRef,
+                "/rasel",
+              )
             }
-            className="px-6 py-2 rounded-full bg-blue-500 text-sm sm:text-base shadow-lg hover:bg-blue-600 transition"
+             className="p-1 rounded-full shadow-lg hover:scale-110 transition"
           >
-            Rasel
+            <Image
+              src="/3.png"
+              alt="Rasel"
+              width={60}
+              height={60}
+              className="rounded-full object-cover border-2 border-blue-900"
+            />
           </motion.button>
 
           {/* Faiza */}
@@ -106,9 +153,15 @@ export default function StepPunch() {
             transition={{ type: "spring", stiffness: 500, damping: 25 }}
             onMouseEnter={() => moveBtn(setFaizaPos, faizaRef)}
             onClick={() => moveBtn(setFaizaPos, faizaRef)}
-            className="px-6 py-2 rounded-full bg-green-500 text-sm sm:text-base shadow-lg hover:bg-green-600 transition"
+           className="p-1 rounded-full shadow-lg hover:scale-110 transition"
           >
-            Faiza
+            <Image
+              src="/8.png"
+              alt="Faiza"
+              width={60}
+              height={60}
+              className="rounded-full object-cover border-2 border-green-900"
+            />
           </motion.button>
 
           {/* Mayub */}
@@ -118,9 +171,15 @@ export default function StepPunch() {
             transition={{ type: "spring", stiffness: 500, damping: 25 }}
             onMouseEnter={() => moveBtn(setMayubPos, mayubRef)}
             onClick={() => moveBtn(setMayubPos, mayubRef)}
-            className="px-6 py-2 rounded-full bg-purple-500 text-sm sm:text-base shadow-lg hover:bg-purple-600 transition"
+             className="p-1 rounded-full shadow-lg hover:scale-110 transition"
           >
-            Mayub
+            <Image
+              src="/2.png"
+              alt="Mayub"
+              width={60}
+              height={60}
+              className="rounded-full object-cover border-2 border-purple-900"
+            />
           </motion.button>
 
           {/* Naveen */}
@@ -129,11 +188,23 @@ export default function StepPunch() {
             animate={{ x: naveenPos.x, y: naveenPos.y }}
             transition={{ type: "spring", stiffness: 500, damping: 25 }}
             onClick={() =>
-              handleClickMoveThenNavigate(naveenClicks, setNaveenClicks, setNaveenPos, naveenRef, "/naveen")
+              handleClickMoveThenNavigate(
+                naveenClicks,
+                setNaveenClicks,
+                setNaveenPos,
+                naveenRef,
+                "/naveen",
+              )
             }
-            className="px-6 py-2 rounded-full bg-yellow-500 text-sm sm:text-base shadow-lg hover:bg-yellow-600 transition"
+           className="p-1 rounded-full shadow-lg hover:scale-110 transition"
           >
-            Naveen
+            <Image
+              src="/5.png"
+              alt="Naveen"
+              width={60}
+              height={60}
+              className="rounded-full object-cover border-2 border-yellow-900"
+            />
           </motion.button>
         </div>
 

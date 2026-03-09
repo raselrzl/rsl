@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function LoveForeverPage() {
   const router = useRouter();
@@ -41,16 +42,26 @@ export default function LoveForeverPage() {
       <div className="border border-zinc-700 rounded-2xl shadow-2xl p-6 sm:p-10 text-center relative overflow-hidden min-w-[300px] max-w-3xl">
         <div className="text-6xl mb-4">😡</div>
 
-        <h1 className="text-xl sm:text-3xl font-bold mb-6">
-          You are so disrespectful toward Rasel!
-        </h1>
+        <h1 className="text-xl sm:text-3xl font-bold mb-2">
+  You are so disrespectful toward
+</h1>
+
+<div className="flex justify-center mb-6">
+  <Image
+    src="/3.png"
+    alt="Anisa"
+    width={80}
+    height={80}
+    className="rounded-full object-cover border-2 border-red-500"
+  />
+</div>
 
         <p className="text-sm sm:text-lg mb-6">
-          If you want to love him, you must <span className="text-green-400">never disrespect</span> him ❤️
+          If you really love, you must <span className="text-green-400">never disrespect</span>❤️
         </p>
 
         <p className="text-sm sm:text-lg mb-8">
-          Will you be respectful forever? 😏
+          Will you be respectful till end? 😏
         </p>
 
         {/* Buttons container */}

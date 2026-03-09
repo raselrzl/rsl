@@ -44,7 +44,7 @@ export default function StepTwo() {
       initial={{ scale: 0.8, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="relative z-10 border border-zinc-700 bg-black/20 backdrop-blur-sm rounded-2xl shadow-2xl p-4 sm:p-8 text-center space-y-6 sm:space-y-10 min-w-80 max-w-3xl"
+      className="relative z-10 border border-zinc-700 bg-black/80 backdrop-blur-sm rounded-2xl shadow-2xl p-4 sm:p-8 text-center space-y-6 sm:space-y-10 min-w-80 max-w-3xl"
     >
         <h2 className="text-xl sm:text-4xl font-bold text-green-400 mb-4">🎆 OOOOOPS 🎆</h2>
         <p className="text-base sm:text-2xl mb-4">
@@ -61,7 +61,7 @@ export default function StepTwo() {
         </div>
 
         {/* Background */}
-        <Image src="/bye.gif" alt="Background" fill className="object-cover opacity-80 -z-10" />
+        <Image src="/bye.gif" alt="Background" fill className="object-cover opacity-10 -z-10" />
       </motion.div>
     </div>
   );

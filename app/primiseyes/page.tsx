@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function PromiseYesPage() {
   const router = useRouter();
@@ -36,7 +37,15 @@ export default function PromiseYesPage() {
         {!showMessage ? (
           <>
             <h1 className="text-xl sm:text-3xl font-bold mb-6">
-              Are you going to love Rasel forever? 😏
+              Are you going to love{" "}
+              <Image
+                src="/3.png"
+                alt="Nadira"
+                width={80}
+                height={80}
+                className="rounded-full object-cover border-2 border-red-500"
+              />{" "}
+              forever? 😏
             </h1>
 
             <div className="relative h-24 flex items-center justify-center gap-6">
@@ -52,7 +61,12 @@ export default function PromiseYesPage() {
               <motion.button
                 ref={noBtnRef}
                 animate={{ x: noPos.x, y: noPos.y }}
-                transition={{ type: "spring", stiffness: 500, damping: 25, duration: 0.3 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 500,
+                  damping: 25,
+                  duration: 0.3,
+                }}
                 onMouseEnter={moveNo}
                 onClick={moveNo}
                 className="px-6 sm:px-10 py-3 sm:py-4 rounded-full bg-red-500 text-sm sm:text-lg font-semibold shadow-lg"
@@ -64,17 +78,25 @@ export default function PromiseYesPage() {
         ) : (
           <div>
             <h1 className="text-xl sm:text-3xl font-bold mb-6 text-green-400">
-              🎉 Welcome! You are always in Rasel's heart ❤️
+              🎉 Welcome! You are always{" "}
+              <Image
+                src="/4.png"
+                alt="Nadira"
+                width={80}
+                height={80}
+                className="rounded-full object-cover border-2 border-red-500"
+              />{" "}
+              ❤️
             </h1>
             <p className="text-sm sm:text-lg mb-6">
-              It was blocked because of disrespect.💌
+              ❤️ was blocked because of disrespect.💌
             </p>
 
             <button
               onClick={handleConditions}
               className="px-6 sm:px-10 py-3 sm:py-4 rounded-full bg-blue-500 hover:bg-blue-600 text-sm sm:text-lg font-semibold shadow-lg"
             >
-              See Promises 📜
+              Promise? 📜
             </button>
           </div>
         )}

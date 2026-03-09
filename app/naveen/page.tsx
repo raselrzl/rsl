@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 export default function NaveenPage() {
@@ -8,7 +9,6 @@ export default function NaveenPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-black text-white font-julius p-4 sm:p-6">
       <div className="border-4 border-zinc-700 rounded-2xl shadow-2xl p-6 sm:p-10 w-full max-w-md bg-zinc-900 text-center">
-
         <div className="text-6xl mb-4">🥊</div>
 
         <h1 className="text-xl sm:text-3xl font-bold mb-6 text-red-400">
@@ -16,7 +16,15 @@ export default function NaveenPage() {
         </h1>
 
         <p className="text-sm sm:text-lg mb-4">
-          You punched me and broke my nose! 😤
+          You punched{" "}
+          <Image
+            src="/5.png"
+            alt="Naven"
+            width={80}
+            height={80}
+            className="rounded-full object-cover border-2 border-red-500"
+          />{" "}
+          and broke my nose! 😤
         </p>
 
         <p className="text-sm sm:text-lg mb-6">

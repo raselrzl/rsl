@@ -12,15 +12,17 @@ export default function NadiraPage() {
   };
 
   return (
-    <div className="relative w-full min-h-screen flex items-center justify-center bg-black text-white font-julius">
-
-      {/* Background */}
+     <div className="relative w-full min-h-screen flex items-center justify-center bg-black text-white font-julius">
+      {/* Background Image */}
       <Image
-        src="/fireworks1.gif"
-        alt="Fireworks"
+        src="/img3.jpg"
+        alt="Background"
         fill
-        className="object-cover opacity-70"
+        className="object-cover"
       />
+
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/80 z-0"></div>
 
       {/* Card */}
       <motion.div
@@ -29,7 +31,6 @@ export default function NadiraPage() {
         transition={{ duration: 0.5 }}
         className="relative z-10 bg-zinc-900 border border-zinc-700 rounded-2xl p-8 sm:p-12 text-center shadow-2xl w-80 sm:w-105"
       >
-
         <div className="text-6xl mb-4">🤨</div>
 
         <h1 className="text-xl sm:text-3xl font-bold text-pink-400 mb-6">
@@ -37,9 +38,8 @@ export default function NadiraPage() {
         </h1>
 
         <p className="text-sm sm:text-xl mb-6">
-          You can't punch yourself 😤  
-First hold your ears and do utha-bosha. 😑
-        😏
+          You can't punch yourself 😤 First hold your ears and do utha-bosha. 😑
+          😏
         </p>
 
         {/* Punch Button */}
@@ -47,9 +47,8 @@ First hold your ears and do utha-bosha. 😑
           onClick={handlePunch}
           className="px-8 py-3 rounded-full bg-red-500 hover:bg-red-600 transition shadow-lg"
         >
-         Then Punch Someone else 👊
+          Then Punch Someone else 👊
         </button>
-
       </motion.div>
     </div>
   );
