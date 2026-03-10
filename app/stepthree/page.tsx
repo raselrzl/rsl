@@ -93,6 +93,9 @@ export default function StepPunch() {
         transition={{ duration: 0.4 }}
         className="relative z-10 bg-zinc-900 border border-zinc-700 rounded-2xl p-6 sm:p-12 text-center shadow-2xl w-80 sm:w-105 flex flex-col items-center"
       >
+        <p className="text-[8px] text-zinc-300">
+          Note: A secret route may appear depending on the number of punches.
+        </p>
         <h2 className="text-xl sm:text-4xl font-bold text-pink-400 mb-4 sm:mb-6">
           😢 Since you are not satisfied, whom do you want to punch? 😢
         </h2>

@@ -9,6 +9,7 @@ export default function StepTwo() {
   const router = useRouter();
   const [noPos2, setNoPos2] = useState({ x: 0, y: 0 });
   const btnRef2 = useRef<HTMLButtonElement>(null);
+  const [showCode, setShowCode] = useState(false);
 
   const moveNo = () => {
     if (!btnRef2.current) return;
@@ -29,26 +30,28 @@ export default function StepTwo() {
 
   return (
     <div className="relative flex min-h-screen items-center justify-center bg-black text-white font-julius p-2 sm:p-6">
+      {/* PAGE BACKGROUND GIF */}
+      <Image
+        src="/bye.gif"
+        alt="Background"
+        fill
+        priority
+        className="object-cover opacity-80"
+      />
 
-    {/* PAGE BACKGROUND GIF */}
-    <Image
-      src="/bye.gif"
-      alt="Background"
-      fill
-      priority
-      className="object-cover opacity-80"
-    />
-
-    {/* CARD */}
-    <motion.div
-      initial={{ scale: 0.8, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ duration: 0.6 }}
-      className="relative z-10 border border-zinc-700 bg-black/80 backdrop-blur-sm rounded-2xl shadow-2xl p-4 sm:p-8 text-center space-y-6 sm:space-y-10 min-w-80 max-w-3xl"
-    >
-        <h2 className="text-xl sm:text-4xl font-bold text-green-400 mb-4">🎆 OOOOOPS 🎆</h2>
+      {/* CARD */}
+      <motion.div
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        className="relative z-10 border border-zinc-700 bg-black/80 backdrop-blur-sm rounded-2xl shadow-2xl p-4 sm:p-8 text-center space-y-6 sm:space-y-10 min-w-80 max-w-3xl"
+      >
+        <h2 className="text-xl sm:text-4xl font-bold text-green-400 mb-4">
+          🎆 OOOOOPS 🎆
+        </h2>
         <p className="text-base sm:text-2xl mb-4">
-          You can have this for now; next time, the gift will be even better! ❤️🔥
+          You can have this for now; next time, the gift will be even better!
+          ❤️🔥
         </p>
 
         <div className="relative h-16 sm:h-20 flex items-center justify-center gap-4">
@@ -60,8 +63,33 @@ export default function StepTwo() {
           </button>
         </div>
 
+        <div className="flex flex-col items-center gap-3">
+          <button
+            onClick={() => setShowCode(true)}
+            className="px-5 py-2 rounded-full bg-blue-500 hover:bg-blue-600 text-white text-sm sm:text-base shadow-lg transition"
+          >
+            🔐 Reveal the secret Code
+          </button>
+
+          {showCode && (
+            <div className="text-center space-y-1">
+              <p className="text-xl sm:text-2xl font-bold text-yellow-400 tracking-widest">
+                N14IR1
+              </p>
+              <p className="text-[8px] text-zinc-300">
+                note: Remember the code, it will help.
+              </p>
+            </div>
+          )}
+        </div>
+
         {/* Background */}
-        <Image src="/bye.gif" alt="Background" fill className="object-cover opacity-10 -z-10" />
+        <Image
+          src="/bye.gif"
+          alt="Background"
+          fill
+          className="object-cover opacity-10 -z-10"
+        />
       </motion.div>
     </div>
   );

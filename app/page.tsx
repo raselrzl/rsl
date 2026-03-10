@@ -165,8 +165,10 @@ export default function Home() {
                 No
               </motion.button>
             </div>
-          </motion.div>
+             <p className="text-xs">Discover the sentence and complete the gap. <br/> </p><span className="text-pink-500 text-xs py-1 bg-gray-800 px-2 rounded-2xl">" The - - - - - - - - - - - - - - - away. "</span>
 
+          </motion.div>
+         
           {/* Fixed End button */}
           <FloatingEndButton />
         </>

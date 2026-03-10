@@ -111,8 +111,8 @@ export default function PromiseYesPage() {
             <h1 className="text-xl sm:text-3xl font-bold mb-6 text-green-400">
               🎉 Welcome! You are always{" "}
               <Image
-                src="/4.png"
-                alt="Nadira"
+                src="/rasel.png"
+                alt="RASEL"
                 width={80}
                 height={80}
                 className="rounded-full object-cover border-2 border-red-500"
