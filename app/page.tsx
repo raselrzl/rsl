@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 // @ts-ignore
 import Cookies from "js-cookie";
-import FloatingEndButton from "./FloatingEndButton";
 
 export default function Home() {
   const DEFAULT_PIN = "969801"; // default PIN
@@ -169,8 +168,6 @@ export default function Home() {
 
           </motion.div>
          
-          {/* Fixed End button */}
-          <FloatingEndButton />
         </>
       ) : (
         <div className="relative z-10 border border-zinc-700 rounded-2xl shadow-2xl p-6 sm:p-10 w-full max-w-md bg-zinc-900 text-center">

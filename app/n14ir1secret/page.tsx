@@ -35,7 +35,6 @@ export default function SecretLovePage() {
 
   return (
     <div className="relative flex min-h-screen items-center justify-center bg-black text-white font-julius overflow-hidden p-4 sm:p-6">
-      
       {/* Lock page background */}
       {!showContent && (
         <div className="absolute inset-0 flex flex-wrap items-center justify-center pointer-events-none">
@@ -95,8 +94,12 @@ export default function SecretLovePage() {
           {/* Secret moving background */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             {Array.from({ length: 50 }).map((_, i) => {
-              const text = secretBackgroundItems[Math.floor(Math.random() * secretBackgroundItems.length)];
-              const emoji = secretEmojis[Math.floor(Math.random() * secretEmojis.length)];
+              const text =
+                secretBackgroundItems[
+                  Math.floor(Math.random() * secretBackgroundItems.length)
+                ];
+              const emoji =
+                secretEmojis[Math.floor(Math.random() * secretEmojis.length)];
               return (
                 <motion.div
                   key={i}
