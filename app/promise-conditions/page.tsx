@@ -81,9 +81,9 @@ export default function PromiseConditionsPage() {
           >
             Submit
           </button>
-          <p className="text-xs text-zinc-300 mt-2">
-            Note: The code depends on the number of punches.
-          </p>
+         <p className="text-xs text-zinc-300 mt-2">
+  Note: Did you miss the code somewhere along the journey?
+</p>
         </form></>
       )}
 
@@ -140,9 +140,9 @@ export default function PromiseConditionsPage() {
               </p>
             </div>
 
-            <span className="text-pink-500 text-xs py-1 bg-gray-800 px-2 rounded-2xl">
-              The saddest thing about love is that it cannot only die, but that
-              sometimes it fades away.
+            <span className="text-pink-500 text-xs py-1 bg-gray-800 px-8 rounded-2xl">
+              Secret Quote: " The saddest thing about love is that it cannot only die, but that
+              sometimes it fades away. "
             </span>
 
             {/* Conditions Box */}
